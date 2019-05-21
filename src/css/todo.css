@@ -1,0 +1,12 @@
+li{
+    list-style: none;
+    border: 1px solid black;
+    padding: 2%;
+    margin: 2%
+}
+span {
+    font-weight: bold;
+}
+p{
+    font-weight: bold;
+}
