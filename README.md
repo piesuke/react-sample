@@ -6,9 +6,11 @@
 https://nodejs.org/en/
 
 ・yarnをインストール  
-```npm install -g yarn  
+```
+npm install -g yarn  
 yarn -v  
-yarn init```  
+yarn init
+```  
 
 ・create-react-appのインストール  
 `npm install -g create-react-app`
