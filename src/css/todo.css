@@ -10,3 +10,6 @@ span {
 p{
     font-weight: bold;
 }
+.importance{
+    border: 5px solid #E00000;
+}

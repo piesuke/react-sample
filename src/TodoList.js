@@ -17,7 +17,9 @@ class TodoList extends Component{
           title={this.props.todos[i].title}
           desc={this.props.todos[i].desc}
           done={this.props.todos[i].done}
+          importance={this.props.todos[i].importance}
           setTodoStatus={this.props.setTodoStatus}
+          setImportance={this.props.setImportance}
           deleteTodoState={this.props.deleteTodoState}
         />
       );

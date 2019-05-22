@@ -12,13 +12,15 @@ class App extends Component {
           id:1,
           title: "Hello, React!",
           desc: "React始めました",
-          done: false
+          done: false,
+          importance: true
         },
         {
           id:2,
           title: "Hello, Redux!",
           desc: "Reduxは難しいです",
-          done: false
+          done: false,
+          importance: false
         },
       ]
       this.state = {
@@ -31,57 +33,40 @@ class App extends Component {
       const title = e.target.title.value;
       const desc = e.target.desc.value;
       const todos = this.state.todos.slice();
-      const countTodo = this.state.countTodo; 
       todos.push({
-        id:countTodo,
         title:title,
         desc:desc,
         done:false,
-        countTodo: this.state.countTodo
+        importance:false,
       });
 
       this.setState({ todos })
-      this.setState({ countTodo: countTodo + 1})
 
       e.target.title.value = '';
       e.target.desc.value = '';
     }
 
     setTodoStatus(clickTodo) {
-      let countDone = this.state.countDone;
-      let level = this.state.level;
-      let num = this.state.num;
       const todos = this.state.todos.slice();
       const todo = todos[clickTodo.index];
       todo.done = !todo.done;
       todos[clickTodo] = todo;
-  
-      if (todo.done) {
-        countDone++;
-      } else {
-        countDone--;
-      }
-  
-     while (countDone >= num) {
-        level++;
-        if (num === 0) {
-          num += 2;
-        } else {
-        num += level;
-        }
-        console.log(countDone, num);
-      }
-      const nextLevel = num - countDone;
-  
+    
       this.setState({ todos });
-      this.setState({ countDone });
-      this.setState({ level });
-      this.setState({ num });
-      this.setState({ nextLevel });
     }
 
+    setImportance(clickTodo) {
+      const todos = this.state.todos.slice();
+      const todo = todos[clickTodo.index];
+      todo.importance = !todo.importance;
+      todos[clickTodo] = todo;
+    
+      this.setState({ todos });
+    }
+
+
     setAllFiltering(clickTodo){
-      const doneList = this.props.todos.filter((item) => (
+      const doneList = this.state.todos.filter((item) => (
         item.done == true
         ||  item.done == false
       ));
@@ -91,7 +76,7 @@ class App extends Component {
     }
 
     setDoneFiltering(clickTodo){
-      const doneList = this.props.todos.filter((item) => (
+      const doneList = this.state.todos.filter((item) => (
         item.done == true
       ));
       this.setState({
@@ -100,7 +85,7 @@ class App extends Component {
     }
 
     setUndoneFiltering(clickTodo){
-      const unDoneList = this.props.todos.filter((item) => (
+      const unDoneList = this.state.todos.filter((item) => (
         item.done == false
       ));
       this.setState({
@@ -124,6 +109,7 @@ class App extends Component {
         <TodoList
         todos={this.state.todos}
         setTodoStatus={this.setTodoStatus.bind(this)}
+        setImportance={this.setImportance.bind(this)}
         deleteTodoState={this.deleteTodoState.bind(this)}
         setAllFiltering={this.setAllFiltering.bind(this)} 
         setDoneFiltering={this.setDoneFiltering.bind(this)} 
